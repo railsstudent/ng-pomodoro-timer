@@ -1,0 +1,40 @@
+.container {
+  color: #FFF;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-container {
+  font-size: 200px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  line-height: 1;
+
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.minutes, .middle, .seconds {
+  padding: 15px;
+  /* border: 1px solid green; */
+} 
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-black {
+  width: 4em;
+  height: 3em;
+  background: #000;
+  color: #FFF;
+  margin: 1em;
+  border-radius: 10px;
+}
+
+.message {
+  font-size: 1.5em;
+}
