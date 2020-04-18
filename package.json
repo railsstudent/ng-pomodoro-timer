@@ -11,6 +11,7 @@
     "@angular/platform-browser": "8.2.14",
     "@angular/platform-browser-dynamic": "8.2.14",
     "@angular/router": "8.2.14",
+    "@schuchard/prettier": "^3.1.0",
     "angular-cli-ghpages": "^0.6.2",
     "core-js": "2.5.1",
     "rxjs": "6.5.5",
@@ -21,6 +22,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "prettier": "prettier --write \"**/*.{js,json,css,scss,less,md,ts,html,component.html}\"",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -37,6 +39,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^5.0.1",
+    "husky": "4.2.5",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "^5.0.2",
@@ -45,9 +48,23 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lint-staged": "10.1.5",
+    "prettier": "2.0.4",
     "protractor": "^6.0.0",
     "ts-node": "~3.0.4",
     "tslint": "^5.20.1",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "~3.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,less,md,ts,html,component.html}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
