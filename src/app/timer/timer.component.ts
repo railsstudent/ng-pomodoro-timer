@@ -12,7 +12,11 @@ enum Status {
   RUNNING = 'RUNNING',
 }
 
-const TOTAL_SECONDS = 25 * 60;
+const TWENTY_FIVE = 25;
+const NUM_SECONDS = 60;
+const TOTAL_SECONDS = TWENTY_FIVE * NUM_SECONDS;
+const TEN = 10;
+const MILLISECONDS_INTERVAL = 1000;
 
 @Component({
   selector: 'app-timer',
@@ -45,16 +49,16 @@ export class TimerComponent implements OnInit {
         this.displayTime();
         this.totalSeconds -= 1;
       }.bind(this),
-      1000,
+      MILLISECONDS_INTERVAL,
     );
   }
 
   displayTime() {
-    const seconds = this.totalSeconds % 60;
-    const minutes = Math.floor((this.totalSeconds - seconds) / 60);
+    const seconds = this.totalSeconds % NUM_SECONDS;
+    const minutes = Math.floor((this.totalSeconds - seconds) / NUM_SECONDS);
 
-    this.strMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    this.strSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    this.strMinutes = minutes < TEN ? `0${minutes}` : `${minutes}`;
+    this.strSeconds = seconds < TEN ? `0${seconds}` : `${seconds}`;
   }
 
   startTimer() {
