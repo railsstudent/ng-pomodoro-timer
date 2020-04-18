@@ -3,32 +3,31 @@ import { Component, OnInit } from '@angular/core';
 const timerMessages = {
   start: 'Let the countdown begin!!',
   running: 'Greatness is within sight!!',
-  stop: 'Never quit keep going!!'
+  stop: 'Never quit keep going!!',
 };
 
 enum Status {
-    STOP = 'STOP',
-    PAUSE = 'PAUSE',
-    RUNNING = 'RUNNING'
-};
+  STOP = 'STOP',
+  PAUSE = 'PAUSE',
+  RUNNING = 'RUNNING',
+}
 
 const TOTAL_SECONDS = 25 * 60;
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent implements OnInit {
-
-  message: string = '';
-  strMinutes: string = '';
-  strSeconds: string = '';
+  message = '';
+  strMinutes = '';
+  strSeconds = '';
   totalSeconds: number = TOTAL_SECONDS;
   timerId: any;
   status = Status.STOP;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.message = timerMessages.start;
@@ -37,24 +36,25 @@ export class TimerComponent implements OnInit {
 
   countdown() {
     this.timerId = setInterval(
-      function() {
-          if (this.totalSeconds <= 0) {
-            clearInterval(this.timerId);
-            this.setStatus(Status.STOP);
-            this.displayTime()
-          }
+      function () {
+        if (this.totalSeconds <= 0) {
+          clearInterval(this.timerId);
+          this.setStatus(Status.STOP);
           this.displayTime();
-          this.totalSeconds -= 1;
-      }.bind(this), 1000);
+        }
+        this.displayTime();
+        this.totalSeconds -= 1;
+      }.bind(this),
+      1000,
+    );
   }
-
 
   displayTime() {
     const seconds = this.totalSeconds % 60;
     const minutes = Math.floor((this.totalSeconds - seconds) / 60);
 
-    this.strMinutes = (minutes < 10) ? `0${minutes}` : `${minutes}`;
-    this.strSeconds = (seconds < 10) ? `0${seconds}` : `${seconds}`;;
+    this.strMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    this.strSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
   }
 
   startTimer() {
@@ -70,7 +70,7 @@ export class TimerComponent implements OnInit {
   stopTimer() {
     clearInterval(this.timerId);
     this.setStatus(Status.STOP);
-    this.displayTime()
+    this.displayTime();
   }
 
   setStatus(newStatus: Status) {

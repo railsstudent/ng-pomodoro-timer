@@ -1,5 +1,5 @@
 .container {
-  color: #FFF;
+  color: #fff;
 
   display: flex;
   flex-direction: column;
@@ -15,7 +15,9 @@
   display: flex;
 }
 
-.minutes, .middle, .seconds {
+.minutes,
+.middle,
+.seconds {
   padding: 15px;
 }
 
@@ -28,7 +30,7 @@
   width: 3em;
   height: 3em;
   background: #000;
-  color: #FFF;
+  color: #fff;
   margin: 5px;
   border-radius: 10px;
   font-size: 1em;

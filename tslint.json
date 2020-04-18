@@ -13,7 +13,6 @@
     "indent": [true, "spaces"],
     "interface-over-type-literal": true,
     "label-position": true,
-    "max-line-length": [true, 140],
     "member-access": false,
     "member-ordering": [
       true,
@@ -45,9 +44,7 @@
     "object-literal-sort-keys": false,
     "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
     "prefer-const": true,
-    "quotemark": [true, "single"],
     "radix": true,
-    "semicolon": [true, "always"],
     "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
       true,
@@ -63,8 +60,8 @@
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"],
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
+    "directive-selector": [true, "attribute", ["app", "my"], "camelCase"],
+    "component-selector": [true, "element", ["app", "my"], "kebab-case"],
     "no-inputs-metadata-property": true,
     "no-outputs-metadata-property": true,
     "no-host-metadata-property": true,

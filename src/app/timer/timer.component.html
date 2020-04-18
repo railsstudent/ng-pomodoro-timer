@@ -1,9 +1,9 @@
 <div class="container">
-  <p class="message">{{message}}</p>
+  <p class="message">{{ message }}</p>
   <div class="timer-container">
-    <div class="minutes">{{strMinutes}}</div>
+    <div class="minutes">{{ strMinutes }}</div>
     <div class="middle">:</div>
-    <div class="seconds">{{strSeconds}}</div>
+    <div class="seconds">{{ strSeconds }}</div>
   </div>
   <div class="buttons">
     <button id="play" class="btn-black" (click)="startTimer()" *ngIf="status === 'STOP' || status === 'PAUSE'">
