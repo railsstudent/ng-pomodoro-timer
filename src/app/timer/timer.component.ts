@@ -39,18 +39,15 @@ export class TimerComponent implements OnInit {
   }
 
   countdown() {
-    this.timerId = setInterval(
-      function () {
-        if (this.totalSeconds <= 0) {
-          clearInterval(this.timerId);
-          this.setStatus(Status.STOP);
-          this.displayTime();
-        }
+    this.timerId = setInterval(() => {
+      if (this.totalSeconds <= 0) {
+        clearInterval(this.timerId);
+        this.setStatus(Status.STOP);
         this.displayTime();
-        this.totalSeconds -= 1;
-      }.bind(this),
-      MILLISECONDS_INTERVAL,
-    );
+      }
+      this.displayTime();
+      this.totalSeconds -= 1;
+    }, MILLISECONDS_INTERVAL);
   }
 
   displayTime() {
