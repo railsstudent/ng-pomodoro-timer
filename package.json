@@ -1,6 +1,6 @@
 {
-  "name": "angular-template",
-  "description": "",
+  "name": "ng-pomodoro-timer",
+  "description": "pomodoro timer",
   "homepage": "https://stackblitz.com/edit/ng-pomodoro-timer",
   "dependencies": {
     "@angular/animations": "8.2.14",
