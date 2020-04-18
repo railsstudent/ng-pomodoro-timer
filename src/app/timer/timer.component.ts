@@ -25,7 +25,7 @@ export class TimerComponent implements OnInit {
   strMinutes: string = '';
   strSeconds: string = '';
   totalSeconds: number = TOTAL_SECONDS;
-  timerId: number = null;
+  timerId: any;
   status = Status.STOP;
 
   constructor() { }
@@ -36,7 +36,7 @@ export class TimerComponent implements OnInit {
   }
 
   countdown() {
-    this.timerId = setInterval( 
+    this.timerId = setInterval(
       function() {
           if (this.totalSeconds <= 0) {
             clearInterval(this.timerId);
