@@ -27,7 +27,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prettier-check": "prettier --single-quote --list-different \"*.{js,json,css,md,ts,html,component.html}\""
   },
   "private": true,
   "devDependencies": {
