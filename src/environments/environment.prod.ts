@@ -5,3 +5,5 @@ export const environment = {
   production: true,
   timer: (timer && parseInt(timer, 10)) || default_timer,
 };
+
+console.log('environment', environment);
