@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 const timerMessages = {
   start: 'Let the countdown begin!!',
@@ -24,19 +26,25 @@ const MILLISECONDS_INTERVAL = 1000;
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css'],
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnInit, OnDestroy {
   message = '';
   strMinutes = '';
   strSeconds = '';
   totalSeconds: number = TOTAL_SECONDS;
   timerId: any;
   status = Status.STOP;
+  volumeOnSub$ = new Subject<string>();
+  volumeOn = '';
+  unsubscribe$ = new Subject();
+  speechSupported = 'speechSynthesis' in window;
 
   constructor() {}
 
   ngOnInit() {
     this.message = timerMessages.start;
     this.displayTime();
+
+    this.volumeOnSub$.pipe(startWith('off'), takeUntil(this.unsubscribe$)).subscribe(value => (this.volumeOn = value));
   }
 
   countdown() {
@@ -55,8 +63,8 @@ export class TimerComponent implements OnInit {
     const seconds = this.totalSeconds % NUM_SECONDS;
     const minutes = Math.floor((this.totalSeconds - seconds) / NUM_SECONDS);
 
-    this.strMinutes = minutes < TEN ? `0${minutes}` : `${minutes}`;
-    this.strSeconds = seconds < TEN ? `0${seconds}` : `${seconds}`;
+    this.strMinutes = `${minutes < TEN ? '0' : ''}${minutes}`;
+    this.strSeconds = `${seconds < TEN ? '0' : ''}${seconds}`;
   }
 
   startTimer() {
@@ -91,5 +99,10 @@ export class TimerComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

@@ -15,5 +15,21 @@
     <button id="stop" class="btn-black" (click)="stopTimer()" *ngIf="status === 'RUNNING' || status === 'PAUSE'">
       <i class="fas fa-undo"></i>
     </button>
+    <button
+      id="sayTimeLeft"
+      class="btn-black"
+      (click)="volumeOnSub$.next('on')"
+      *ngIf="speechSupported && volumeOn === 'off'"
+    >
+      <i class="fas fa-volume-up"></i>
+    </button>
+    <button
+      id="mutetime"
+      class="btn-black"
+      (click)="volumeOnSub$.next('off')"
+      *ngIf="speechSupported && volumeOn === 'on'"
+    >
+      <i class="fas fa-volume-mute"></i>
+    </button>
   </div>
 </div>
