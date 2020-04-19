@@ -1,11 +1,4 @@
-const default_timer = 25;
-
-console.log('process', process);
-const timer = process && process.env && process.env.TIMER_PERIOD;
-
 export const environment = {
   production: true,
-  timer: (timer && parseInt(timer, 10)) || default_timer,
+  timer: 15,
 };
-
-console.log('environment', environment);
