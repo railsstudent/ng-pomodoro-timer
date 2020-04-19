@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const timerMessages = {
   start: 'Let the countdown begin!!',
@@ -12,7 +13,7 @@ enum Status {
   RUNNING = 'RUNNING',
 }
 
-const TWENTY_FIVE = 25;
+const TWENTY_FIVE = environment.timer;
 const NUM_SECONDS = 60;
 const TOTAL_SECONDS = TWENTY_FIVE * NUM_SECONDS;
 const TEN = 10;
