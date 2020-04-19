@@ -1,4 +1,6 @@
 const default_timer = 25;
+
+console.log('process', process);
 const timer = process && process.env && process.env.TIMER_PERIOD;
 
 export const environment = {
