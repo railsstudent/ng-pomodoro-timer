@@ -70,7 +70,7 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "no-magic-numbers": true,
+    "no-magic-numbers": false,
     "rxjs-no-unsafe-takeuntil": {
       "severity": "error"
     }

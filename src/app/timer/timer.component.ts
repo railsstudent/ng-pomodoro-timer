@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil, map, tap } from 'rxjs/operators';
+import { SpeechApi } from './speech.service';
+import { Voice } from './interface';
 
 const timerMessages = {
   start: 'Let the countdown begin!!',
@@ -20,6 +22,7 @@ const NUM_SECONDS = 60;
 const TOTAL_SECONDS = TWENTY_FIVE * NUM_SECONDS;
 const TEN = 10;
 const MILLISECONDS_INTERVAL = 1000;
+const SPEAK_INTERVAL = [0, 30];
 
 @Component({
   selector: 'app-timer',
@@ -37,14 +40,24 @@ export class TimerComponent implements OnInit, OnDestroy {
   volumeOn = '';
   unsubscribe$ = new Subject();
   speechSupported = 'speechSynthesis' in window;
+  voice: Voice;
 
-  constructor() {}
+  constructor(private speechApi: SpeechApi) {}
 
   ngOnInit() {
     this.message = timerMessages.start;
     this.displayTime();
 
-    this.volumeOnSub$.pipe(startWith('off'), takeUntil(this.unsubscribe$)).subscribe(value => (this.volumeOn = value));
+    this.speechApi.getUsVoice().then(voice => (this.voice = voice));
+
+    this.volumeOnSub$
+      .pipe(
+        startWith('off'),
+        map(value => (this.status === Status.STOP ? this.volumeOn || value : value)),
+        tap(value => console.log('volumnOn', value)),
+        takeUntil(this.unsubscribe$),
+      )
+      .subscribe(value => (this.volumeOn = value));
   }
 
   countdown() {
@@ -65,6 +78,10 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.strMinutes = `${minutes < TEN ? '0' : ''}${minutes}`;
     this.strSeconds = `${seconds < TEN ? '0' : ''}${seconds}`;
+
+    if (this.volumeOn === 'on' && SPEAK_INTERVAL.indexOf(seconds) >= 0) {
+      this.speechApi.speak(minutes, seconds, this.voice);
+    }
   }
 
   startTimer() {
