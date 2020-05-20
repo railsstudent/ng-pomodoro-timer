@@ -1,28 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil, map, tap } from 'rxjs/operators';
 import { SpeechApi } from './speech.service';
 import { Voice } from './interface';
-
-const timerMessages = {
-  start: 'Let the countdown begin!!',
-  running: 'Greatness is within sight!!',
-  stop: 'Never quit keep going!!',
-};
-
-enum Status {
-  STOP = 'STOP',
-  PAUSE = 'PAUSE',
-  RUNNING = 'RUNNING',
-}
-
-const TWENTY_FIVE = environment.timer;
-const NUM_SECONDS = 60;
-const TOTAL_SECONDS = TWENTY_FIVE * NUM_SECONDS;
-const TEN = 10;
-const MILLISECONDS_INTERVAL = 1000;
-const SPEAK_INTERVAL = [0, 30];
+import {
+  TOTAL_SECONDS,
+  NUM_SECONDS,
+  TEN,
+  MILLISECONDS_INTERVAL,
+  SPEAK_INTERVAL,
+  timerMessages,
+  Status,
+} from './constants';
 
 @Component({
   selector: 'app-timer',
@@ -53,7 +42,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.volumeOnSub$
       .pipe(
         startWith('off'),
-        map(value => (this.status === Status.STOP ? this.volumeOn || value : value)),
+        map(value => (this.status !== Status.RUNNING ? this.volumeOn || value : value)),
         tap(value => console.log('volumnOn', value)),
         takeUntil(this.unsubscribe$),
       )
@@ -92,11 +81,13 @@ export class TimerComponent implements OnInit, OnDestroy {
   pauseTimer() {
     clearInterval(this.timerId);
     this.setStatus(Status.PAUSE);
+    this.volumeOnSub$.next('off');
   }
 
   stopTimer() {
     clearInterval(this.timerId);
     this.setStatus(Status.STOP);
+    this.volumeOnSub$.next('off');
     this.displayTime();
   }
 

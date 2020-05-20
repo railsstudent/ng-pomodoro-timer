@@ -29,7 +29,7 @@ export class SpeechApi {
 
     const utter = new SpeechSynthesisUtterance(text);
     utter.voice = voice;
-    utter.rate = 0.75;
+    utter.rate = 1;
     utter.pitch = 1;
 
     synthesis.speak(utter);
