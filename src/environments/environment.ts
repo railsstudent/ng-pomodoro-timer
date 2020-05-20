@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  timer: 5,
+  timer: 10,
 };
