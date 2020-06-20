@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  timer: 15,
+  timer: 20,
 };
