@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular 5';
+  name = 'Angular 5'
 
   constructor(titleService: Title) {
-    titleService.setTitle('Pomodoro Timer');
+    titleService.setTitle('Pomodoro Timer')
   }
 }
