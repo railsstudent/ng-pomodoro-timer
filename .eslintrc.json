@@ -11,7 +11,9 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:import/recommended",
+        "plugin:import/typescript"
       ],
       "rules": {
         "@angular-eslint/component-selector": [
@@ -33,7 +35,9 @@
         "prettier/prettier": [
           "error",
           { "printWidth": 120, "semi": false, "singleQuote": true, "trailingComma": "all" }
-        ]
+        ],
+        "import/first": "error",
+        "import/newline-after-import": "error"
       }
     },
     {
@@ -41,5 +45,15 @@
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
-  ]
+  ],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "."
+      }
+    }
+  }
 }
