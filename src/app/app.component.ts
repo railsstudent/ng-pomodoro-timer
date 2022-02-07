@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<app-timer></app-timer>',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {

@@ -27,7 +27,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prettier-check": "prettier --single-quote --list-different \"*.{js,json,css,md,ts,html,component.html}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "github-page-deploy": "ng deploy"
   },
   "private": true,
   "devDependencies": {
