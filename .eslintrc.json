@@ -37,7 +37,8 @@
           { "printWidth": 120, "semi": false, "singleQuote": true, "trailingComma": "all" }
         ],
         "import/first": "error",
-        "import/newline-after-import": "error"
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error"
       }
     },
     {
